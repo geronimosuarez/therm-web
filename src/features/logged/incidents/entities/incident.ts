@@ -5,7 +5,7 @@ export interface Incident {
   usersAffected: number;
   timeOpened: string;
   featureAffected: string;
-  severity: IncidentSeverity;
+  type: IncidentType;
   status: IncidentStatus;
   notificationsSent: {
     timestamp: string;
@@ -14,7 +14,7 @@ export interface Incident {
   }[];
 }
 
-export enum IncidentSeverity {
+export enum IncidentType {
   Critical = 'critical',
   High = 'high',
   Medium = 'medium',

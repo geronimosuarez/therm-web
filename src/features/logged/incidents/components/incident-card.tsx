@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   Incident,
   IncidentActionType,
-  IncidentSeverity,
+  IncidentType,
 } from '../entities/incident';
 import { getSeverityColor, getSeverityIcon } from '../utils/severity';
 import { getStatusColor } from '../utils/status';
@@ -23,7 +23,7 @@ interface IncidentActionsProps {
 
 export default function IncidentCard(incident: Incident) {
   const {
-    severity,
+    type,
     status,
     id,
     name,
@@ -46,20 +46,20 @@ export default function IncidentCard(incident: Incident) {
     setActionType(null);
   };
 
-  const isCritical = severity === IncidentSeverity.Critical;
+  const isCritical = type === IncidentType.Critical;
 
   return (
     <Card key={id} className='hover:shadow-lg transition-shadow duration-200'>
       <CardHeader className='pb-3'>
         <div className='flex items-start justify-between'>
           <div className='flex items-center gap-2'>
-            {getSeverityIcon(severity)}
+            {getSeverityIcon(type)}
             <CardTitle className='text-lg font-semibold text-gray-900'>
               {name}
             </CardTitle>
           </div>
-          <Badge variant='outline' className={getSeverityColor(severity)}>
-            {severity.toUpperCase()}
+          <Badge variant='outline' className={getSeverityColor(type)}>
+            {type.toUpperCase()}
           </Badge>
         </div>
         <div className='flex items-center gap-2 mt-2'>
@@ -114,15 +114,12 @@ export default function IncidentCard(incident: Incident) {
                 >
                   <div className='flex items-center gap-2'>
                     <Badge variant='outline' className='bg-gray-50'>
-                      {notification.type.toUpperCase()}
+                      EMAIL
                     </Badge>
                     <span className='text-gray-600'>
-                      {notification.recipients} recipients
+                      {incident.usersAffected} recipients
                     </span>
                   </div>
-                  <span className='text-gray-500'>
-                    {notification.timestamp}
-                  </span>
                 </div>
               ))}
             </div>

@@ -16,12 +16,9 @@ export const useGetIncidients = () => {
     // refetchInterval:
   });
 
-  // console.log(data);
-  // console.log(error);
-
   return {
     isLoading: true,
     error: null,
-    incidents: incidentsMock ?? [],
+    incidents: data ?? [],
   };
 };

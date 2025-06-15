@@ -1,8 +1,4 @@
-import {
-  Incident,
-  IncidentSeverity,
-  IncidentStatus,
-} from '../entities/incident';
+import { Incident, IncidentType, IncidentStatus } from '../entities/incident';
 
 export const incidentsMock: Incident[] = [
   {
@@ -13,7 +9,7 @@ export const incidentsMock: Incident[] = [
     usersAffected: 1247,
     timeOpened: '2 hours ago',
     featureAffected: 'Checkout Flow',
-    severity: IncidentSeverity.Critical,
+    type: IncidentType.Critical,
     status: IncidentStatus.Investigating,
     notificationsSent: [
       {
@@ -36,7 +32,7 @@ export const incidentsMock: Incident[] = [
     usersAffected: 892,
     timeOpened: '45 minutes ago',
     featureAffected: 'User Authentication',
-    severity: IncidentSeverity.High,
+    type: IncidentType.High,
     status: IncidentStatus.Open,
     notificationsSent: [],
   },
@@ -48,7 +44,7 @@ export const incidentsMock: Incident[] = [
     usersAffected: 324,
     timeOpened: '1 hour ago',
     featureAffected: 'Product Search',
-    severity: IncidentSeverity.Medium,
+    type: IncidentType.Medium,
     status: IncidentStatus.Investigating,
     notificationsSent: [
       {
@@ -71,7 +67,7 @@ export const incidentsMock: Incident[] = [
     usersAffected: 156,
     timeOpened: '3 hours ago',
     featureAffected: 'Email System',
-    severity: IncidentSeverity.Low,
+    type: IncidentType.Low,
     status: IncidentStatus.Open,
     notificationsSent: [],
   },
@@ -83,7 +79,7 @@ export const incidentsMock: Incident[] = [
     usersAffected: 2103,
     timeOpened: '4 hours ago',
     featureAffected: 'Mobile App Launch',
-    severity: IncidentSeverity.Critical,
+    type: IncidentType.Critical,
     status: IncidentStatus.Investigating,
     notificationsSent: [],
   },
@@ -95,7 +91,7 @@ export const incidentsMock: Incident[] = [
     usersAffected: 67,
     timeOpened: '30 minutes ago',
     featureAffected: 'User Dashboard',
-    severity: IncidentSeverity.Medium,
+    type: IncidentType.Medium,
     status: IncidentStatus.Open,
     notificationsSent: [],
   },

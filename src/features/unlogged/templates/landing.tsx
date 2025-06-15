@@ -50,7 +50,7 @@ export default function Landing() {
             <div className='flex flex-col items-center justify-center space-y-4 text-center'>
               <div className='space-y-2'>
                 <h2 className='text-3xl font-bold tracking-tighter sm:text-5xl'>
-                  Ready to monitor your top users?
+                  Ready to monitor your users?
                 </h2>
                 <p className='max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed'>
                   Start your free trial today and see how Therm can help you
@@ -91,13 +91,13 @@ const HeroSection = () => (
         <div className='flex flex-col justify-center space-y-4'>
           <div className='space-y-2'>
             <h1 className='text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none'>
-              Take care of your <span className='text-red-500'>top users</span>{' '}
-              and avoid churn
+              Take care of your <span className='text-red-500'>users</span> and
+              avoid churn
             </h1>
             <p className='max-w-[600px] text-muted-foreground md:text-xl'>
               Therm helps small B2C wallets monitor and respond to incidents
-              that impact their most valuable customers. Get real-time alerts
-              and insights to protect your user experience.
+              that impact their customers. Get real-time alerts and insights to
+              protect your user experience.
             </p>
           </div>
           <div className='flex flex-col gap-2 min-[400px]:flex-row'>

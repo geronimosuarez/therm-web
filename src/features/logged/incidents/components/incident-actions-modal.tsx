@@ -19,6 +19,7 @@ import {
 } from '@/features/logged/incidents/entities/incident';
 import { getIncidentMessage } from '../utils/notify';
 import { Textarea } from '@/components/ui/textarea';
+import { useSendNotification } from '../hooks/use-send-notification';
 
 interface IncidentActionsModalProps {
   incident: Incident;
@@ -33,10 +34,13 @@ export function IncidentActionsModal({
   onClose,
   actionType,
 }: IncidentActionsModalProps) {
+  const { sendNotification } = useSendNotification();
   const [workaround, setWorkaround] = useState<string>('');
   const [contactMethod, setContactMethod] = useState('email');
   const [includeWorkaround, setIncludeWorkaround] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const incidentMessage = getIncidentMessage(incident);
 
   const handleClose = () => {
     setContactMethod('email');
@@ -47,9 +51,14 @@ export function IncidentActionsModal({
 
   const handleSubmit = async () => {
     if (!incident) return;
+
     setIsSubmitting(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    await sendNotification({
+      incidentId: incident.id,
+      subject: incident.name,
+      message: incidentMessage,
+    });
 
     handleClose();
   };
@@ -93,7 +102,7 @@ export function IncidentActionsModal({
 
           <div className='space-y-2'>
             <Label htmlFor='message'>Message:</Label>
-            <p className='text-gray-600'>{getIncidentMessage(incident)}</p>
+            <p className='text-gray-600'>{incidentMessage}</p>
           </div>
 
           {actionType === 'contact' && (
@@ -125,7 +134,7 @@ export function IncidentActionsModal({
             <p className='font-medium text-gray-700'>Incident Details:</p>
             <p className='text-gray-600'>ID: {incident.id}</p>
             <p className='text-gray-600'>
-              Severity: {incident.severity.toUpperCase()}
+              Severity: {incident.type.toUpperCase()}
             </p>
             <p className='text-gray-600'>
               Users Affected: {incident.usersAffected.toLocaleString()}
