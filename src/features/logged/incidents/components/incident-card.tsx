@@ -66,7 +66,6 @@ export default function IncidentCard(incident: Incident) {
           <Badge variant='outline' className={getStatusColor(status)}>
             {status.toUpperCase()}
           </Badge>
-          <span className='text-xs text-gray-500'>#{id}</span>
         </div>
       </CardHeader>
 
