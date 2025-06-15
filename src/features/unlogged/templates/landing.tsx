@@ -113,7 +113,7 @@ const HeroSection = () => (
         <div className='flex items-center justify-center'>
           <div className='relative'>
             <Image
-              src='/placeholder.svg?height=400&width=400'
+              src='https://sdmntprwestus.oaiusercontent.com/files/00000000-5488-6230-93d4-20bfc1bbabe8/raw?se=2025-06-15T12%3A15%3A22Z&sp=r&sv=2024-08-04&sr=b&scid=9eff4e0a-4644-536f-8f77-2960399c2618&skoid=789f404f-91a9-4b2f-932c-c44965c11d82&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-06-15T11%3A09%3A34Z&ske=2025-06-16T11%3A09%3A34Z&sks=b&skv=2024-08-04&sig=5gzJ/oh4BA6s8eihdbLZonadxwkzk%2BrDTbfJXIgiEQQ%3D'
               width='400'
               height='400'
               alt='Therm Dashboard'
