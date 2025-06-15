@@ -20,4 +20,10 @@ export enum IncidentStatus {
   Open = 'open',
   Investigating = 'investigating',
   Resolved = 'resolved',
+  Fixing = 'fixing',
+}
+
+export enum IncidentActionType {
+  Contact = 'contact',
+  Notify = 'notify',
 }

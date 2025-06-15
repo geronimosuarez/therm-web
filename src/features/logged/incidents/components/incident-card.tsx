@@ -1,20 +1,52 @@
 import { Clock, Users } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Incident } from '../entities/incident';
+import {
+  Incident,
+  IncidentActionType,
+  IncidentSeverity,
+} from '../entities/incident';
 import { getSeverityColor, getSeverityIcon } from '../utils/severity';
 import { getStatusColor } from '../utils/status';
+import { Button } from '@/components/ui/button';
+import { FunctionComponent, useState } from 'react';
+import { IncidentActionsModal } from './incident-actions-modal';
 
-export default function IncidentCard({
-  severity,
-  status,
-  id,
-  name,
-  description,
-  usersAffected,
-  timeOpened,
-  featureAffected,
-}: Incident) {
+/*
+ * Types
+ */
+
+interface IncidentActionsProps {
+  handleContactUsers: () => void;
+  isCritical: boolean;
+}
+
+export default function IncidentCard(incident: Incident) {
+  const {
+    severity,
+    status,
+    id,
+    name,
+    description,
+    usersAffected,
+    timeOpened,
+    featureAffected,
+  } = incident;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [actionType, setActionType] = useState<IncidentActionType | null>(null);
+
+  const handleContactUsers = () => {
+    setActionType(IncidentActionType.Contact);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setActionType(null);
+  };
+
+  const isCritical = severity === IncidentSeverity.Critical;
+
   return (
     <Card key={id} className='hover:shadow-lg transition-shadow duration-200'>
       <CardHeader className='pb-3'>
@@ -66,7 +98,42 @@ export default function IncidentCard({
             {featureAffected}
           </Badge>
         </div>
+
+        <IncidentActions
+          handleContactUsers={handleContactUsers}
+          isCritical={isCritical}
+        />
+        <IncidentActionsModal
+          incident={incident}
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          actionType={actionType ?? IncidentActionType.Contact}
+        />
       </CardContent>
     </Card>
   );
 }
+
+const IncidentActions: FunctionComponent<IncidentActionsProps> = ({
+  handleContactUsers,
+  isCritical,
+}) => (
+  <div className='flex flex-col gap-2'>
+    <div className='flex gap-2'>
+      <Button
+        size='sm'
+        variant='outline'
+        onClick={handleContactUsers}
+        className='flex-1 text-xs'
+      >
+        <Users className='h-3 w-3 mr-1' />
+        Contact Users
+      </Button>
+    </div>
+    {isCritical && (
+      <span className='text-xs text-gray-500'>
+        On-Call Engineers were notified
+      </span>
+    )}
+  </div>
+);
