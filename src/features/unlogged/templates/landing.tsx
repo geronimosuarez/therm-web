@@ -119,17 +119,7 @@ const HeroSection = () => (
               alt='Therm Dashboard'
               className='mx-auto aspect-square overflow-hidden rounded-xl object-cover shadow-2xl'
             />
-            <div className='absolute -bottom-4 -right-4 bg-white p-4 rounded-lg shadow-lg border'>
-              <div className='flex items-center gap-2'>
-                <AlertTriangle className='w-5 h-5 text-orange-500' />
-                <div>
-                  <div className='font-semibold text-sm'>Incident Detected</div>
-                  <div className='text-xs text-muted-foreground'>
-                    Top user affected
-                  </div>
-                </div>
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>
