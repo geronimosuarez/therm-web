@@ -1,4 +1,4 @@
-import { Clock, Users } from 'lucide-react';
+import { Clock, Users, Bell } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
@@ -31,6 +31,7 @@ export default function IncidentCard(incident: Incident) {
     usersAffected,
     timeOpened,
     featureAffected,
+    notificationsSent,
   } = incident;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [actionType, setActionType] = useState<IncidentActionType | null>(null);
@@ -98,6 +99,35 @@ export default function IncidentCard(incident: Incident) {
             {featureAffected}
           </Badge>
         </div>
+
+        {notificationsSent.length > 0 && (
+          <div className='pt-2 border-t border-gray-100'>
+            <div className='flex items-center gap-2 mb-2'>
+              <Bell className='h-4 w-4 text-gray-500' />
+              <p className='text-xs text-gray-500'>Notifications Sent</p>
+            </div>
+            <div className='space-y-2'>
+              {notificationsSent.map((notification, index) => (
+                <div
+                  key={index}
+                  className='flex items-center justify-between text-xs'
+                >
+                  <div className='flex items-center gap-2'>
+                    <Badge variant='outline' className='bg-gray-50'>
+                      {notification.type.toUpperCase()}
+                    </Badge>
+                    <span className='text-gray-600'>
+                      {notification.recipients} recipients
+                    </span>
+                  </div>
+                  <span className='text-gray-500'>
+                    {notification.timestamp}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         <IncidentActions
           handleContactUsers={handleContactUsers}

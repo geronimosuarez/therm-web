@@ -1,4 +1,8 @@
-import { Incident } from '../entities/incident';
+import {
+  Incident,
+  IncidentSeverity,
+  IncidentStatus,
+} from '../entities/incident';
 
 export const incidentsMock: Incident[] = [
   {
@@ -9,8 +13,20 @@ export const incidentsMock: Incident[] = [
     usersAffected: 1247,
     timeOpened: '2 hours ago',
     featureAffected: 'Checkout Flow',
-    severity: 'critical',
-    status: 'investigating',
+    severity: IncidentSeverity.Critical,
+    status: IncidentStatus.Investigating,
+    notificationsSent: [
+      {
+        timestamp: '1 hour ago',
+        type: 'email',
+        recipients: 1247,
+      },
+      {
+        timestamp: '30 minutes ago',
+        type: 'push',
+        recipients: 800,
+      },
+    ],
   },
   {
     id: 'INC-002',
@@ -20,8 +36,9 @@ export const incidentsMock: Incident[] = [
     usersAffected: 892,
     timeOpened: '45 minutes ago',
     featureAffected: 'User Authentication',
-    severity: 'high',
-    status: 'open',
+    severity: IncidentSeverity.High,
+    status: IncidentStatus.Open,
+    notificationsSent: [],
   },
   {
     id: 'INC-003',
@@ -31,8 +48,20 @@ export const incidentsMock: Incident[] = [
     usersAffected: 324,
     timeOpened: '1 hour ago',
     featureAffected: 'Product Search',
-    severity: 'medium',
-    status: 'investigating',
+    severity: IncidentSeverity.Medium,
+    status: IncidentStatus.Investigating,
+    notificationsSent: [
+      {
+        timestamp: '2 hours ago',
+        type: 'whatsapp',
+        recipients: 38,
+      },
+      {
+        timestamp: '30 minutes ago',
+        type: 'push',
+        recipients: 1091,
+      },
+    ],
   },
   {
     id: 'INC-004',
@@ -42,8 +71,9 @@ export const incidentsMock: Incident[] = [
     usersAffected: 156,
     timeOpened: '3 hours ago',
     featureAffected: 'Email System',
-    severity: 'low',
-    status: 'open',
+    severity: IncidentSeverity.Low,
+    status: IncidentStatus.Open,
+    notificationsSent: [],
   },
   {
     id: 'INC-005',
@@ -53,8 +83,9 @@ export const incidentsMock: Incident[] = [
     usersAffected: 2103,
     timeOpened: '4 hours ago',
     featureAffected: 'Mobile App Launch',
-    severity: 'critical',
-    status: 'investigating',
+    severity: IncidentSeverity.Critical,
+    status: IncidentStatus.Investigating,
+    notificationsSent: [],
   },
   {
     id: 'INC-006',
@@ -64,7 +95,8 @@ export const incidentsMock: Incident[] = [
     usersAffected: 67,
     timeOpened: '30 minutes ago',
     featureAffected: 'User Dashboard',
-    severity: 'medium',
-    status: 'open',
+    severity: IncidentSeverity.Medium,
+    status: IncidentStatus.Open,
+    notificationsSent: [],
   },
 ];

@@ -7,6 +7,11 @@ export interface Incident {
   featureAffected: string;
   severity: IncidentSeverity;
   status: IncidentStatus;
+  notificationsSent: {
+    timestamp: string;
+    type: string;
+    recipients: number;
+  }[];
 }
 
 export enum IncidentSeverity {
